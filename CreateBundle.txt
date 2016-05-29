@@ -1,0 +1,77 @@
+- Generate a new bundle
+(for example 'src/Company/DemoBundle')
+php bin/console generate:bundle
+cd src/Company/DemoBundle/
+
+- Init your github repository in 'src/Company/DemoBundle'
+
+git init
+touch README.md
+git add .
+git commit -m "initial commit"
+git remote add origin https://github.com/aaidettaa/WinegramAnalisisBundle.git
+git push -u origin master
+Add a composer.json file
+
+src/Company/DemoBundle/composer.json:
+
+{
+    "name" : "company/demobundle",
+    "description" : "A demo bundle",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "demo",
+        "email" : "demo@company.com"
+    }],
+    "keywords" : [
+        "demo bundle"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Company\\DemoBundle" : ""
+        }
+    },
+    "target-dir" : "Company/DemoBundle",
+    "repositories" : [{
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "some_version-dev"
+        }
+    }
+}
+Now you have the base structure of your bundle
+
+- Use it in another project
+
+composer.json:
+
+    [...]
+    "require" : {
+        [...]
+        "company/demobundle" : "dev-master"
+    },
+    "repositories" : [{
+        "type" : "vcs",
+        "url" : "https://github.com/Company/DemoBundle.git"
+    }],
+    [...]
+Do:
+
+curl -sS https://getcomposer.org/installer | php
+php composer.phar update company/demobundle
+app/AppKernel:
+
+new Company\DemoBundle\CompanyDemoBundle(),
+Work on it
+
+You can clone your DemoBundle in the src/Company folder, then manual install it
+You can use symlink
+Conclusion
+
+You can develop and test your bundle in your first project and use it with github and composer in your second project.

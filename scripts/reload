@@ -1,0 +1,4 @@
+#!/bin/bash
+php ../bin/console doctrine:database:drop --connection=default --force
+php ../bin/console doctrine:database:create --connection=default
+php ../bin/console doctrine:schema:update --force --em=default
