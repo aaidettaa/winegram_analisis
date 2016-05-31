@@ -14,7 +14,9 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $test = new LoadData();
-        $test->load();
+        $em = $this->getDoctrine()->getManager();
+        $all_twitts = [];
+        $test->load($em, $all_twitts);
         exit();
         return $this->render('TestBundle:Default:index.html.twig');
     }
