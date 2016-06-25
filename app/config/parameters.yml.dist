@@ -19,4 +19,10 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     sqs_php.region:     eu-west-1
-    sqs_url:            your_sqs_url
+    social_sqs_url:     ~
+    indexing_sqs_url:   ~
+    ibm_user:           ~
+    ibm_pw:             ~
+    datumbox_api_key:   ~
+    yandex_api_key:     ~
+    redis_parameters:   ~

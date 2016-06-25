@@ -1,5 +1,9 @@
-test:
-    resource: "@TestBundle/Controller/"
+winegram_api:
+    resource: "@WinegramApiBundle/Controller/"
     type:     annotation
     prefix:   /
 
+#winegram_api:
+#    type:     rest
+#    prefix:   /api
+#    resource: "@WinegramApiBundle/Resources/config/api-routing.yml"

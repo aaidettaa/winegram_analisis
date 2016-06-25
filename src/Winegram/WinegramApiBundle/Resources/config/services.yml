@@ -1,0 +1,27 @@
+services:
+    predis:
+        class: Predis\Client
+        public: false
+        arguments:
+            - "%redis_parameters%"
+    redis_client:
+        class: Winegram\WinegramApiBundle\Services\Redis\RedisClient
+        arguments:
+            - "@predis"
+    winegram_api_getRedis:
+        class: Winegram\WinegramApiBundle\getSqs
+        arguments:
+            - "@redis_client"
+            - "@winegram_load_data"
+            - "@sqs_php.client"
+
+
+#        arguments: ["@service_id", "plain_value", %parameter%]
+
+#    winegram_api.example:
+#        class: Winegram\WinegramApiBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+
+#    winegram_api_pòstIndexing:
+#        class: Winegram\WinegramApiBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

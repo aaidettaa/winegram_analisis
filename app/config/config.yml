@@ -2,7 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@TestBundle/Resources/config/services.yml" }
+    - { resource: "@WinegramAnalisisBundle/Resources/config/services.yml" }
+    - { resource: "@WinegramApiBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -20,6 +21,8 @@ framework:
     csrf_protection: ~
     validation:      { enable_annotations: true }
     #serializer:      { enable_annotations: true }
+#    serializer:
+#            enabled: true
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -51,10 +54,14 @@ doctrine:
         charset:  UTF8
 
     orm:
-        auto_mapping: true
-        mappings:
-            WinegramUtilitiesBundle:
-                type: yml
+        auto_generate_proxy_classes: %kernel.debug%
+        default_entity_manager: default
+        entity_managers:
+            default:
+                mappings:
+                    WinegramAnalisisBundle:
+                        type: yml
+                        prefix: Winegram\WinegramAnalisisBundle\Domain\Entity
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -64,15 +71,32 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-#sqs_php:
-#    queues:
-#        db_queue:
-#            url: "%sqs_url%"
-#            worker: ['WinegramAnalisisBundle_OLD\src\Infrastructure\Analize', 'getSqsMessage']
-#
+sqs_php:
+    queues:
+        social_queue:
+            url: "%social_sqs_url%"
+            worker: ['winegram_api_getRedis', 'getSqsMessage']
+        indexing_queue:
+            url: "%indexing_sqs_url%"
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
 #snc_redis:
 #    clients:
 #        default:
 #            type: predis
 #            alias: default
-#            dsn: redis://localhost
+#            dsn: tcp://ip del servidor:puerto
+
+#fos_rest:
+#    view:
+#        view_response_listener: 'force'
+#        formats:
+#            json: true
+#    format_listener:
+#        rules:
+#            - { path: ^/api, priorities: [ json ], fallback_format: json, prefer_extension: true }

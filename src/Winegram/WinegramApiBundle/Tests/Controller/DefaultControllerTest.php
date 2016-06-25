@@ -1,6 +1,6 @@
 <?php
 
-namespace TestBundle\Tests\Controller;
+namespace Winegram\WinegramApiBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

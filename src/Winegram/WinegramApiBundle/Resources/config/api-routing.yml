@@ -1,0 +1,4 @@
+winegram_api_comments:
+    type: rest
+    resource: "@WinegramApiBundle/Controller/CommentsController.php"
+    name_prefix:  api_comments_

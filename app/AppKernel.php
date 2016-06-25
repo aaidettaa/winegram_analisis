@@ -15,9 +15,13 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Winegram\WinegramUtilitiesBundle\WinegramUtilitiesBundle(),
             new Winegram\WinegramAnalisisBundle\WinegramAnalisisBundle(),
-            new TestBundle\TestBundle(),
+            new Winegram\WinegramApiBundle\WinegramApiBundle(),
+            new SqsPhpBundle\SqsPhpBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+//            new FOS\RestBundle\FOSRestBundle(),
+//            new JMS\SerializerBundle\JMSSerializerBundle()
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
