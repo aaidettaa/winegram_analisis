@@ -9,11 +9,12 @@ services:
         arguments:
             - "@predis"
     winegram_api_getRedis:
-        class: Winegram\WinegramApiBundle\getSqs
+        class: Winegram\WinegramApiBundle\Services\getSqs
         arguments:
             - "@redis_client"
             - "@winegram_load_data"
             - "@sqs_php.client"
+            - "@logger"
 
 
 #        arguments: ["@service_id", "plain_value", %parameter%]

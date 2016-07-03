@@ -1,13 +1,14 @@
 <?php
 
-namespace Winegram\WinegramApiBundle\Services;
 
-use Psr\Log\LoggerInterface;
+namespace Winegram\WinegramApiBundle\Services\Analysis;
+
+
 use SqsPhpBundle\Client\Client;
 use Winegram\WinegramAnalisisBundle\Domain\Service\LoadData\LoadData;
 use Winegram\WinegramApiBundle\Services\Redis\RedisClient;
 
-class getSqs {
+class AnalysisClient {
 
     const SOCIAL_POOL = 'social-list';
 
@@ -26,30 +27,22 @@ class getSqs {
      */
     private $sqs;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
-
-    public function __construct(RedisClient $redis, LoadData $loadData, Client $sqs, LoggerInterface $logger)
+    public function __construct(RedisClient $redis, LoadData $loadData, Client $sqs)
     {
         $this->redis = $redis;
         $this->loadData = $loadData;
         $this->sqs = $sqs;
-        $this->logger = $logger;
     }
 
-    public function getSqsMessage($message){
-        var_dump('msg');
+    public function execute(){
 //        var_dump($message);
 //        echo $message;
         //bin/console sqs:worker:start social_queue
-        $this->logger->info('New message');
         $data = $this->redis->lpop(self::SOCIAL_POOL);
         $arr_redis = json_decode($data, true);
         $id_comment = $this->loadData->load($arr_redis);
-        $this->logger->info('Final proces message');
+        return $id_comment;
 //        var_dump($id_comment);
-        $this->sqs->send('indexing_queue', array( "type" => "comment", "id" => $id_comment ));
+//        $this->sqs->send('new-comment', array( "type" => "comment", "id" => $id_comment ));
     }
 }
