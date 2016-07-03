@@ -15,7 +15,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Winegram\WinegramAnalisisBundle\WinegramAnalisisBundle(),
+            new WinegramAnalisisBundle\WinegramAnalisisBundle(),
             new Winegram\WinegramApiBundle\WinegramApiBundle(),
             new SqsPhpBundle\SqsPhpBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),

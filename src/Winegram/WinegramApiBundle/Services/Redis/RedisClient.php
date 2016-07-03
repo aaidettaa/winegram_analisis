@@ -68,6 +68,10 @@ class RedisClient
         $this->redis_client->lrem($key, $count, $value);
     }
 
+    /**
+     * @param $key
+     * @return string
+     */
     public function lpop($key)
     {
         return $this->redis_client->lpop($key);

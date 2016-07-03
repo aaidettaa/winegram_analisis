@@ -61,7 +61,7 @@ doctrine:
                 mappings:
                     WinegramAnalisisBundle:
                         type: yml
-                        prefix: Winegram\WinegramAnalisisBundle\Domain\Entity
+                        prefix: WinegramAnalisisBundle\Domain\Entity
 
 # Swiftmailer Configuration
 swiftmailer:

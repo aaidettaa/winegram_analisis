@@ -3,7 +3,4 @@ winegram_api:
     type:     annotation
     prefix:   /
 
-#winegram_api:
-#    type:     rest
-#    prefix:   /api
-#    resource: "@WinegramApiBundle/Resources/config/api-routing.yml"
+

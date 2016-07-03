@@ -4,10 +4,14 @@ namespace Winegram\WinegramApiBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Winegram\WinegramAnalisisBundle\Application\Service\LoadData\LoadData;
+use WinegramAnalisisBundle\Application\Service\LoadData\LoadData;
+use Winegram\WinegramApiBundle\Services\Redis\RedisClient;
+use SqsPhpBundle\Client\Client;
 
 class DefaultController extends Controller
 {
+    const SOCIAL_POOL = 'social-list';
+
     /**
      * @Route("/")
      */
@@ -16,22 +20,16 @@ class DefaultController extends Controller
 
         /** @var LoadData $loadData */
         $loadData = $this->get('winegram_load_data');
+        /** @var RedisClient $redis */
+        $redis = $this->get('redis_client');
+        /** @var Client $sqs */
+        $sqs = $this->get('sqs_php.client');
 
-        $redis = '{
-"id":"744197182912266243",
-"type":"tweet",
-"text":"Pruno, el Mejor Vino del Mundo",
-"media": "",
-"username":"test",
-"likes_count":6,
-"search_id": "3",
-"query": "pruno",
-"search_content": "",
-"tags": ""
-}';
-        $arr_redis = json_decode($redis, true);
+        $data = $redis->lpop(self::SOCIAL_POOL);
+        $arr_redis = json_decode($data, true);
+        $id_comment = $loadData->load($arr_redis);
+        $sqs->send('indexing_queue', array("type" => "comment", "id" => $id_comment));
 
-        $loadData->load($arr_redis);
         print_r('final');
         exit();
         return $this->render('WinegramApiBundle:Default:index.html.twig');
