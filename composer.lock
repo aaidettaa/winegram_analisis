@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aaidettaa/WinegramAnalisisBundle.git",
-                "reference": "d6c0947cd2ea3ffa7217b2f7baf248b344e3326f"
+                "reference": "e814e28d15883ee966fa70c44701e195f2105375"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aaidettaa/WinegramAnalisisBundle/zipball/d6c0947cd2ea3ffa7217b2f7baf248b344e3326f",
-                "reference": "d6c0947cd2ea3ffa7217b2f7baf248b344e3326f",
+                "url": "https://api.github.com/repos/aaidettaa/WinegramAnalisisBundle/zipball/e814e28d15883ee966fa70c44701e195f2105375",
+                "reference": "e814e28d15883ee966fa70c44701e195f2105375",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "source": "https://github.com/aaidettaa/WinegramAnalisisBundle/tree/master",
                 "issues": "https://github.com/aaidettaa/WinegramAnalisisBundle/issues"
             },
-            "time": "2016-07-03 19:56:12"
+            "time": "2016-07-03 20:42:44"
         },
         {
             "name": "albhilazo/sqs-php-bundle",

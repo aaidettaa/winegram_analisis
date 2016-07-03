@@ -4,7 +4,7 @@ namespace Winegram\WinegramApiBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use WinegramAnalisisBundle\Application\Service\LoadData\LoadData;
+use WinegramAnalisisBundle\Domain\Service\LoadData\LoadData;
 use Winegram\WinegramApiBundle\Services\Redis\RedisClient;
 use SqsPhpBundle\Client\Client;
 
